@@ -68,6 +68,60 @@
       return;
     }
   }
+
+#elif defined(AUTONICS)
+  volatile int counter = 0; //This variable will increase or decrease depending on the rotation of encoder
+  volatile int counter2 = 0; //This variable will increase or decrease depending on the rotation of encoder
+
+  /* Wrap the encoder reading function */
+  long readEncoder(int i)
+  {
+    if (i == LEFT) return counter2;
+    else return counter;
+  }
+
+  /* Wrap the encoder reset function */
+  void resetEncoder(int i)
+  {
+    if (i == LEFT)
+    {
+      counter=0L;
+      return;
+    } 
+    else 
+    { 
+      counter2=0L;
+      return;
+    }
+  }
+
+  void ai0() 
+  {
+    // ai0 is activated if DigitalPin nr 2 is going from LOW to HIGH
+    // Check pin 3 to determine the direction
+    if(digitalRead(4)==LOW) 
+    {
+      counter--;
+    }
+    else
+    {
+      counter++;
+    }
+  }
+
+  void ai1() 
+  {
+    // ai0 is activated if DigitalPin nr 2 is going from LOW to HIGH
+    // Check pin 3 to determine the direction
+    if(digitalRead(5)==LOW) 
+    {
+      counter2--;
+    }
+    else
+    {
+      counter2++;
+    }
+  }
 #else
   #error A encoder driver must be selected!
 #endif
@@ -79,4 +133,3 @@ void resetEncoders() {
 }
 
 #endif
-

@@ -27,6 +27,7 @@ typedef struct {
   int ITerm;                    //integrated term
 
   long output;                    // last motor setting
+  long Perror;
 }
 SetPointInfo;
 
@@ -100,6 +101,7 @@ void doPID(SetPointInfo * p) {
 
   p->output = output;
   p->PrevInput = input;
+  p->Perror = Perror;
 }
 
 /* Read the encoder values and call the PID routine */
@@ -127,4 +129,3 @@ void updatePID() {
   /* Set the motor speeds accordingly */
   setMotorSpeeds(leftPID.output, rightPID.output);
 }
-

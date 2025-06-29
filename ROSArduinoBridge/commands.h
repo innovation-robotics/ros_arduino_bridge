@@ -10,6 +10,8 @@
 #define PIN_MODE       'c'
 #define DIGITAL_READ   'd'
 #define READ_ENCODERS  'e'
+#define READ_TEST      'f'
+#define READ_PID       'g'
 #define MOTOR_SPEEDS   'm'
 #define MOTOR_RAW_PWM  'o'
 #define PING           'p'
@@ -19,9 +21,7 @@
 #define UPDATE_PID     'u'
 #define DIGITAL_WRITE  'w'
 #define ANALOG_WRITE   'x'
-#define LEFT            0
-#define RIGHT           1
+#define LEFT            1
+#define RIGHT           2
 
 #endif
-
-

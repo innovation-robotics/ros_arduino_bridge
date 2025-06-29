@@ -86,6 +86,27 @@
     setMotorSpeed(LEFT, leftSpeed);
     setMotorSpeed(RIGHT, rightSpeed);
   }
+#elif defined CYTRON
+  #include "CytronMotorDriver.h"
+  #define AN1 10 // Arduino pin 5 is connected to MDDS30 pin AN1.
+  #define AN2 11 // Arduino pin 6 is connected to MDDS30 pin AN2.
+  #define IN1 12 // Arduino pin 4 is connected to MDDS30 pin IN1.
+  #define IN2 13 // Arduino pin 7 is connected to MDDS30 pin IN2.
+  
+  CytronMD motor1(PWM_DIR, AN1, IN1);  // PWM 1 = Pin 3, DIR 1 = Pin 4.
+  CytronMD motor2(PWM_DIR, AN2, IN2); // PWM 2 = Pin 9, DIR 2 = Pin 10.
+
+  void initMotorController() 
+  {
+    return;
+  }
+  
+  void setMotorSpeeds(int speedLeft, int speedRight) 
+  {
+    motor1.setSpeed(-speedLeft);   // Motor 1 runs forward at 50% speed.
+    motor2.setSpeed(speedRight);  // Motor 2 runs backward at 50% speed.
+  }
+
 #else
   #error A motor driver must be selected!
 #endif
